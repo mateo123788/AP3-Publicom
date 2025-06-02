@@ -3,9 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Client;
-use App\Models\Panneau;
 use App\Controllers\BaseController;
-use CodeIgniter\HTTP\ResponseInterface;
 
 class Clients extends BaseController
 {
@@ -14,6 +12,9 @@ class Clients extends BaseController
     private $panneauModel;
     private $userModel;
 
+    /**
+     * Constructeur de la classe Clients
+    */
     public function __construct()
     {
         $this->clientModel = new Client();
@@ -21,6 +22,12 @@ class Clients extends BaseController
         $this->panneauModel = model('Panneau');
         $this->userModel = model('UserModel');
     }
+
+    /**
+     * Affiche la liste des clients
+     *
+     * @return string
+    */
 
     public function client(): string
     {
@@ -40,7 +47,11 @@ class Clients extends BaseController
         ]);
     }
 
-    // Ajouter un client 
+    /**
+     * Affiche le formulaire d'ajout d'un client
+     *
+     * @return string
+    */
     public function ajout(): string
     {
         $admin = auth()->user();
@@ -56,6 +67,11 @@ class Clients extends BaseController
         ]);
     }
 
+    /**
+     * Enregistre la création d'un client  dans la base de données
+     *
+     * @return string
+    */
     public function create()
     {
         $admin = auth()->user();
@@ -68,6 +84,12 @@ class Clients extends BaseController
         ]);
     }
 
+    /**
+     * Affiche le formulaire de modification d'un client
+     *
+     * @param int $clientId
+     * @return string
+    */
     public function modif($clientId): string
     {
 
@@ -83,6 +105,11 @@ class Clients extends BaseController
         ]);
     }
 
+    /**
+     * Enregistre la modification d'un client dans la base de données
+     *
+     * @return string
+    */
     public function update()
     {
         $admin = auth()->user();
@@ -95,17 +122,16 @@ class Clients extends BaseController
         ]);
     }
 
+    /**
+     * Supprime un client de la base de données
+     *
+     * @return string
+    */
     public function delete()
     {
         $admin = auth()->user();
 
         $clientId= $this->request->getPost('ID_CLIENT');
-        // $idUser = $this->userModel->getAllByIdClient($clientId);
-
-        // $this->userModel->deleteAuthIdentities($idUser[0]->id);
-        // $this->userModel->deleteAuthPermissionsUsers($idUser[0]->id);
-        // $this->userModel->deleteAuthGroupsUsers($idUser[0]->id);
-        // $this->userModel->deleteAuthRememberTokens($idUser[0]->id);
 
         $this->messageModel->deleteMessage($clientId);
         $this->panneauModel->deletePanneau($clientId);
@@ -116,6 +142,5 @@ class Clients extends BaseController
             'admin' => $admin && $admin->inGroup('admin')
         ]);
 
-        // return('liste_client');
     }
 }

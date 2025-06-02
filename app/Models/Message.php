@@ -12,7 +12,7 @@ class Message extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['ID_CLIENT', 'LIBELLE', 'ETAT_MESSAGE', 'COULEUR'];
+    protected $allowedFields    = ['ID_CLIENT', 'LIBELLE', 'ETAT_MESSAGE', 'COULEUR','ID_QUARTIER','NOM_QUARTIER'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -44,6 +44,8 @@ class Message extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    // Méthode qui fait une requete qui permet de recuperer tous les messages en faisant une jointure avec la table client
+    // et recupère les champs de la table client
     public function findJoinAll()
     {
         return $this
@@ -57,13 +59,17 @@ class Message extends Model
         client.NOM_COMMUNE,
         client.ID_CLIENT,
         client.NOM_RESPONSABLE,
-        client.DESCRIPTION'
+        client.DESCRIPTION,
+        quartier.ID_QUARTIER,
+        quartier.NOM_QUARTIER
+        '
             )
             ->join('client', 'message.ID_CLIENT=client.ID_CLIENT')
+            ->join('quartier', 'message.ID_QUARTIER=quartier.ID_QUARTIER')
             ->findAll();
     }
 
-    // Fonction qui permet supprimer idclient du message
+    // Méthode qui fait une requete pour supprimer un message en fonction de l'id du client
     public function deleteMessage($ID_CLIENT)
     {
         $this->where('message.ID_CLIENT', $ID_CLIENT)

@@ -7,7 +7,7 @@
 
     $table = new \CodeIgniter\View\Table();
 
-    $table->setHeading('NOM COMMUNE', 'MESSAGE', 'ACTIF', 'MODIFIER', 'SUPPRIMER');
+    $table->setHeading('NOM COMMUNE', 'MESSAGE', 'ACTIF','NOM_QUARTIER','MODIFIER', 'SUPPRIMER');
 
     ?>
 
@@ -34,6 +34,7 @@
             '<input type="checkbox" name="ETAT_MESSAGE" ' . ($message['ETAT_MESSAGE'] == 1 ? ' checked' : '') . ' disabled>',
             // '<a href="' . url_to('modif_message', $message['ID_MESSAGE']) . '" class="button">Modifier</a>',
             // '<a href="' . url_to('suppr_message', $message['ID_MESSAGE']) . '" class="button">Supprimer</a>'
+            $message['NOM_QUARTIER'],
             '<a class=button href="' . url_to('modif_message', $message['ID_MESSAGE']) . '" class="button">Modifier</a>',
             '<form method="post"  action="' . url_to('suppr_message', $message['ID_MESSAGE']) . '">
                         <input type="hidden" name="ID_CLIENT" value="' . $message['ID_MESSAGE'] . '">

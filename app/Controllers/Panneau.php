@@ -60,7 +60,7 @@ class Panneau extends BaseController
     }
     //---------------------------------------------------------------------
     //get
-    
+
     // public function modif($panneauxId)
     // {
     //     // $client = $this->clientModel->finJoinAll1($clientID);
@@ -96,7 +96,7 @@ class Panneau extends BaseController
 
     //fonction de supression pour le D du CRUD
     //Get
-    
+
     // public function delete($panneauxId)
     // {
     //     $admin = auth()->user();

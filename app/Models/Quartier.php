@@ -4,21 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Client extends Model
+class Quartier extends Model
 {
-    protected $table            = 'client';
-    protected $primaryKey       = 'ID_CLIENT';
+    protected $table            = 'quartier';
+    protected $primaryKey       = 'ID_QUARTIER';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [
-        'NOM_RESPONSABLE',
-        'NOM_COMMUNE',
-        'DESCRIPTION',
-
-
-    ];
+    protected $allowedFields    = ['NOM_QUARTIER'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -49,5 +43,4 @@ class Client extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-
 }

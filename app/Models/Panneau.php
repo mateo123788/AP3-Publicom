@@ -49,7 +49,8 @@ class Panneau extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    //Methodes
+    // Méthode qui fait une requete qui permet de recuperer tous les panneaux en faisant une jointure avec la table client et la table message
+    // et recupère les champs de la table client et message
     public function findJoinAll()
     {
         return $this
@@ -59,6 +60,7 @@ class Panneau extends Model
             ->findAll();
     }
 
+    // Méthode qui fait une requete qui permet de recuperer tous les panneaux en faisant une jointure avec la table client en identifiant le panneau
     public function findJoinIdClient($panneauId)
     {
         return $this

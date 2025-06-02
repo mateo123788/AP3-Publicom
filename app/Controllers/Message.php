@@ -3,13 +3,13 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\Client;
-use CodeIgniter\HTTP\ResponseInterface;
-use CodeIgniter\Model;
 
 class Message extends BaseController
 {
 
+    /**
+     * Constructeur de la classe Message
+    */
     public function message(): string
     {
         $admin = auth()->user();
@@ -27,8 +27,11 @@ class Message extends BaseController
         ]);
     }
 
-
-
+    /**
+     * Affiche le formulaire d'ajout d'un message
+     *
+     * @return string
+    */
     public function ajout(): string
     {
 
@@ -37,14 +40,22 @@ class Message extends BaseController
 	$clientModel  = model('Client'); 
         $listeClients = $clientModel->findAll();
 
+    $quartierModel = model('Quartier');
+    $listeQuartiers = $quartierModel('Quartier')->findAll();
+
         return view('view-message/ajout-message', [
             'listeClients' => $listeClients,
+            'listeQuartiers' => $listeQuartiers,
             'admin' => $admin && $admin->inGroup('admin')
 
         ]);
     }
 
-
+    /**
+     * Enregistre un message dans la base de données
+     *
+     * @return string
+    */
     public function create()
     {
 
@@ -65,7 +76,12 @@ class Message extends BaseController
         return redirect('liste-message');
     }
 
-
+    /**
+     * Affiche le formulaire de modification d'un message
+     *
+     * @param int $messageId
+     * @return string
+    */
     public function modif($messageId): string
     {
 
@@ -81,8 +97,11 @@ class Message extends BaseController
         ]);
     }
 
-
-
+    /**
+     * Enregistre la modification d'un message dans la base de données
+     *
+     * @return string
+    */
     public function update()
     {
         $admin = auth()->user();
@@ -102,6 +121,12 @@ class Message extends BaseController
         ]);
     }
 
+    /**
+     * Supprime un message de la base de données
+     *
+     * @param int $messageId
+     * @return string
+    */
     public function delete($message)
     {
 

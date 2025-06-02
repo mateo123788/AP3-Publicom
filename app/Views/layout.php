@@ -23,6 +23,7 @@
             <!-- <li><a href="<?= url_to('liste-message') ?>">Clients</a></li> -->
             <li><a href="<?= url_to('liste-message') ?>">Messages</a></li>
             <li><a href="<?= url_to('liste-panneau') ?>">Panneaux</a></li>
+            <li><a href="http://172.28.37.19/phpmyadmin/index.php?route=/database/structure&db=publicom">Phpmyadmin</a></li>
             <!-- <li> <?= $admin ? '<a href="'. url_to('liste-panneau') .'">Panneaux</a>' : '' ?></li> -->
             <!-- <li><a href="<?= url_to('liste-message') ?>">Contact</a></li> -->
             <li><a href="<?= url_to('logout') ?>">Déconnexion</a></li>
@@ -44,8 +45,6 @@
         <?= $this->renderSection('contenu') ?>
 
     </section>
-
-
 
     <footer>
 
@@ -73,9 +72,10 @@
         }
     </script> -->
 
+    <!-- Script qui permet de confirmer la suppression d'un message -->
     <script>
         function messageDelete() {
-            confirm('Vous allez supprimer tous les messages et panneaux en relations avec le client etes vous sur ?') || event.preventDefault();
+            confirm('Vous allez supprimer tous les messages et panneaux en relations avec le client en etes vous sur ?') || event.preventDefault();
         }
     </script>
 

@@ -27,17 +27,15 @@
         }
 
         ?>
+    </select>
+    <select name="ID_QUARTIER">
+        <?php
 
-        <!-- <option id="ID_CLIENT" <?php
-                                    //SUPPR $table = new \CodeIgniter\View\Table();
-                                    //SUPPR $table->setHeading('NOM COMMUNE');
-                                    // foreach ($listeClient as $client) {
-                                    //SUPPR $table->addRow(
-                                    // $client['NOM_COMMUNE']
-                                    // );
-                                    //SUPPR echo $table->generate();
-                                    // } 
-                                    ?>></option> -->
+        foreach ($listeQuartiers as $quartiers) {
+            echo '<option value=' . $quartiers['ID_QUARTIER'] . '>' . $quartiers['NOM_QUARTIER'] . '</option>';
+        }
+
+        ?>
     </select>
 
     <label for="ETAT_MESSAGE">Actif :</label>

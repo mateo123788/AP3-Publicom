@@ -41,7 +41,7 @@ class Message extends BaseController
         $listeClients = $clientModel->findAll();
 
     $quartierModel = model('Quartier');
-    $listeQuartiers = $quartierModel('Quartier')->findAll();
+    $listeQuartiers = $quartierModel->findAll();
 
         return view('view-message/ajout-message', [
             'listeClients' => $listeClients,
